@@ -1,0 +1,19 @@
+<div id="search_bar" class="container">
+    <label>Movie Title</label>
+    <br>
+    <input type="text" id="search_input" style="width:83%">
+    <input type="submit" onclick="searchOMDb()" style="width:15%">
+</div>
+
+<div id="search_results" class="container half">
+    <label>Search Results</label>
+</div>
+
+<div class="container half">
+    <label>Nominations</label>
+    <div hidden id="max_nominations" class="banner">
+        <p>You have nominated 5 movies</p>
+    </div>
+    <div id="nominations">
+    </div>
+</div>
