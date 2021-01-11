@@ -1,19 +1,47 @@
-<div id="search_bar" class="container">
-    <label>Movie Title</label>
-    <br>
-    <input type="text" id="search_input" style="width:83%">
-    <input type="submit" onclick="searchOMDb()" style="width:15%">
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="search_results" class="container half">
-    <label>Search Results</label>
-</div>
 
-<div class="container half">
-    <label>Nominations</label>
-    <div hidden id="max_nominations" class="banner">
-        <p>You have nominated 5 movies</p>
+<head>    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type = "text/css"/>
+
+</head>
+    
+    
+    
+<body>
+
+    <div class="banner">
+        <div id="header">The Shoppies</div>
+        <div hidden id="max_nominations">★ You have nominated 5 movies ★
+        </div>
     </div>
-    <div id="nominations">
+
+
+    <div id="search_bar" class="container">
+        <input type="text" id="search_input" placeholder="Movie title" style="width:80%">
+        <input type="submit" id="search_button" onclick="searchOMDb()" style="width:15%; min-width:80px" value="Search">
     </div>
-</div>
+
+    <div id="search_results" class="container half">
+        <label>Search Results</label>
+    </div>
+
+    <div class="container half">
+        <label>Nominations</label>
+        <button onclick="clear_nominations()" style="float:right;">Clear</button>
+        <div id="nominations">
+        </div>
+        <div>
+            <button onclick="generateShareableLink()" style="width:15%; min-width:80px">Create shareable link</button>
+            <input hidden onClick="this.select();" id="shareable_link">
+        </div>
+    </div>
+    
+ 
+    
+    <script src="script.js"></script>
+
+    
+    </body>

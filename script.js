@@ -5,6 +5,11 @@ var nominations_div = document.getElementById("nominations"); // Nominations div
 var apiKey = "4db33529"; // My personal API key
 var url_omdb = "https://www.omdbapi.com/?apikey=" + apiKey + "&type=movie&s="; // URL for search request
 var nominations_dict = {} // dictionary of user nominations
+var shareable_link = document.getElementById("shareable_link"); // Shareable link input 
+var url = "https://www.omdbapi.com/?apikey=4db33529&i=";
+const urlParams = new URLSearchParams(window.location.search);
+const nominationsParameter = urlParams.get("nominations")
+
 
 // Functions
 /// Perform search
@@ -47,6 +52,7 @@ function searchOMDb() {
                 // Add button to nominate film          
                 var nomination_button = document.createElement("button");
                 nomination_button.innerHTML = "Nominate"
+                nomination_button.style.float = "right"
                 nomination_button.setAttribute('onclick', 'nominate("' + movie.Title + '","' + movie.Year + '","' + movie.imdbID + '")')
                 // If movie has been nominated, disable nominate button
                 if (movie.imdbID in nominations_dict) {
@@ -110,12 +116,15 @@ function load_nominations() {
         // Add button to remove nomination
         var nominationRemoveButton = document.createElement("button");
         nominationRemoveButton.innerHTML = "Remove";
+        nominationRemoveButton.style.float = "right";
         nominationRemoveButton.setAttribute('onclick', 'remove("' + imdbID + '")');
 
         nominationItem.appendChild(nominationRemoveButton);
         nominations_div.appendChild(nominationItem);
 
     }
+    
+    shareable_link.hidden = true;
 
 }
 
@@ -129,3 +138,67 @@ function remove(id) {
     delete nominations_dict[id];
     load_nominations();
 }
+
+// Function to generate shareable link
+function generateShareableLink() {
+    shareable_link.value = "file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html?nominations=" + Object.keys(nominations_dict)
+    shareable_link.hidden = false;
+}
+
+// Clear nominations
+function clear_nominations() {
+    for (var key in nominations_dict) {
+        remove(key)
+    }
+}
+
+
+// Event listeners
+/// Search results upon enter
+input_search.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("search_button").click();
+    }
+});
+
+
+
+
+
+
+
+// Load shareable link parameters
+if (nominationsParameter) {
+    var nominationsLoadIDs = nominationsParameter.split(",")
+
+    for (i = 0; i < nominationsLoadIDs.length; i++) {
+        fetch(url + nominationsLoadIDs[i])
+            .then(response => response.json())
+            .then(data => nominations_dict[data.imdbID] = ({
+                "Title": data.Title,
+                "Year": data.Year
+            }))
+    }
+
+
+    load_nominations_button = document.createElement("button")
+    load_nominations_button.setAttribute("onclick", "load_nominations()")
+    load_nominations_button.innerHTML = "Load nominations"
+    load_nominations_button.id = "load_nom"
+    document.body.appendChild(load_nominations_button)
+
+
+
+
+    load_nominations_button.click();
+    document.getElementById("load_nom").click();
+}
+
+
+
+load_nominations();
+
