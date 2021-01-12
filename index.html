@@ -2,20 +2,20 @@
 <html lang="en">
 
 
-<head>    
+<head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" type = "text/css"/>
+    <link rel="stylesheet" href="style.css" type="text/css" />
 
 </head>
-    
-    
-    
+
+
+
 <body>
 
     <div class="banner">
+
         <div id="header">The Shoppies</div>
-        <div hidden id="max_nominations">★ You have nominated 5 movies ★
-        </div>
+
     </div>
 
 
@@ -24,24 +24,29 @@
         <input type="submit" id="search_button" onclick="searchOMDb()" style="width:15%; min-width:80px" value="Search">
     </div>
 
-    <div id="search_results" class="container half">
-        <label>Search Results</label>
+    <div class="container half">
+        <div class="container_header"><label id="results_header">Search Results</label></div>
+        <ul id="search_results"></ul>
     </div>
 
     <div class="container half">
-        <label>Nominations</label>
-        <button onclick="clear_nominations()" style="float:right;">Clear</button>
-        <div id="nominations">
+        <div class="container_header"><label>Nominations</label>
+            <button class="share" type="button" title="Share your nominations with someone else" onclick="copyShareableLink()">
+                <img src="https://img.icons8.com/ios/452/upload--v1.png" width="10">
+                (copy link)</button>
+            <input hidden id="shareable_link" value="file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html">
+
+            <button onclick="clear_nominations()" style="float:right;color:#008060;">Clear</button>
         </div>
-        <div>
-            <button onclick="generateShareableLink()" style="width:15%; min-width:80px">Create shareable link</button>
-            <input hidden onClick="this.select();" id="shareable_link">
+        <ul id="nominations">
+        </ul>
+        <div hidden id="max_nominations">★ You have nominated 5 movies ★
         </div>
     </div>
-    
- 
-    
+
+
+
     <script src="script.js"></script>
 
-    
-    </body>
+
+</body>

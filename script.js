@@ -19,9 +19,8 @@ function searchOMDb() {
 
     // Clear previous search results and add label to search results
     search_results.innerHTML = "";
-    var resultsLabel = document.createElement("label");
+    var resultsLabel = document.getElementById("results_header");
     resultsLabel.innerHTML = "Results for <b>" + searchQuery + "</b>";
-    search_results.appendChild(resultsLabel);
 
     // Make request
     /// Create a request variable
@@ -123,7 +122,7 @@ function load_nominations() {
         nominations_div.appendChild(nominationItem);
 
     }
-    
+
     shareable_link.hidden = true;
 
 }
@@ -139,10 +138,18 @@ function remove(id) {
     load_nominations();
 }
 
-// Function to generate shareable link
-function generateShareableLink() {
+// Function to copy shareable link
+function copyShareableLink() {
+    // Create link    
     shareable_link.value = "file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html?nominations=" + Object.keys(nominations_dict)
+
+    // Copy link
     shareable_link.hidden = false;
+    var copyLinkText = document.getElementById("shareable_link");
+    copyLinkText.select();
+    copyLinkText.setSelectionRange(0, 99999); /* For mobile devices */
+    document.execCommand("copy");
+    shareable_link.hidden = true;
 }
 
 // Clear nominations
@@ -168,37 +175,21 @@ input_search.addEventListener("keyup", function(event) {
 
 
 
-
-
-
 // Load shareable link parameters
 if (nominationsParameter) {
     var nominationsLoadIDs = nominationsParameter.split(",")
 
-    for (i = 0; i < nominationsLoadIDs.length; i++) {
-        fetch(url + nominationsLoadIDs[i])
-            .then(response => response.json())
-            .then(data => nominations_dict[data.imdbID] = ({
-                "Title": data.Title,
-                "Year": data.Year
-            }))
+    for (var i = 0; i < nominationsLoadIDs.length; i++) {
+        nominationsLoadIDs[i] = url + nominationsLoadIDs[i];
     }
+    requests = nominationsLoadIDs.map(url => fetch(url));
 
+    Promise.all(requests)
+        .then(responses => Promise.all(responses.map(r => r.json())))
+        .then(movies => movies.forEach(movies => nominations_dict[movies.imdbID] = {
+            "Title": movies.Title,
+            "Year": movies.Year
+        }))
+        .then(nominations => load_nominations());
 
-    load_nominations_button = document.createElement("button")
-    load_nominations_button.setAttribute("onclick", "load_nominations()")
-    load_nominations_button.innerHTML = "Load nominations"
-    load_nominations_button.id = "load_nom"
-    document.body.appendChild(load_nominations_button)
-
-
-
-
-    load_nominations_button.click();
-    document.getElementById("load_nom").click();
 }
-
-
-
-load_nominations();
-
