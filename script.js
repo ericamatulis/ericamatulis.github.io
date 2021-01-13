@@ -10,6 +10,8 @@ var url = "https://www.omdbapi.com/?apikey=4db33529&i=";
 const urlParams = new URLSearchParams(window.location.search);
 const nominationsParameter = urlParams.get("nominations") // Nominations in URL parameters
 var pg = 1; // Current search results page
+var nominations_cookie = getCookie("nominations_cookie"); // Get nominations cookie
+var nominationsLoadIDs // Nominations to load
 
 
 // Functions
@@ -161,6 +163,8 @@ function load_nominations() {
         document.getElementById("bar" + (i)).style.backgroundColor = "#EEE";
     } // Color number of bars that have not been nominated in grey
 
+    // Set nominations in cookies
+     document.cookie = "nominations_cookie="+Object.keys(nominations_dict)
 }
 
 // Function to remove a nomination
@@ -225,7 +229,23 @@ function previousPage() {
     }
     document.getElementById("page").innerHTML = "Page " + pg;
 
+}
 
+// Get cookie by cookie name
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
 
 
@@ -246,8 +266,13 @@ input_search.addEventListener("keyup", function(event) {
 
 
 // Load shareable link parameters
-if (nominationsParameter) {
-    var nominationsLoadIDs = nominationsParameter.split(",")
+if (nominationsParameter || nominations_cookie!="") {
+    if (nominationsParameter) {
+        nominationsLoadIDs = nominationsParameter.split(",")
+    }
+    else {
+        nominationsLoadIDs = nominations_cookie.split(",")
+    }
 
     for (var i = 0; i < nominationsLoadIDs.length; i++) {
         nominationsLoadIDs[i] = url + nominationsLoadIDs[i];
