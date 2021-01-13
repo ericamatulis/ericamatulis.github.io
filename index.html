@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css" type="text/css" />
-
 </head>
 
 
@@ -13,34 +12,60 @@
 <body>
 
     <div class="banner">
-
-        <div id="header">The Shoppies</div>
-
+        <div id="header">
+            <img src="https://image.flaticon.com/icons/png/512/419/419952.png" height="40px" style="float:left; margin:10px 10px 10px 10px;">the shoppies
+        </div>
+        <div style="float:right; font-size:14px;">Movie awards for entrepreneurs</div>
     </div>
 
 
     <div id="search_bar" class="container">
+        Search movies to nominate (by title)<br>
         <input type="text" id="search_input" placeholder="Movie title" style="width:80%">
-        <input type="submit" id="search_button" onclick="searchOMDb()" style="width:15%; min-width:80px" value="Search">
+        <input type="submit" id="search_button" onclick="searchOMDb(1)" style="width:15%; min-width:80px" value="Search">
     </div>
 
     <div class="container half">
-        <div class="container_header"><label id="results_header">Search Results</label></div>
-        <ul id="search_results"></ul>
-    </div>
-
-    <div class="container half">
-        <div class="container_header"><label>Nominations</label>
-            <button class="share" type="button" title="Share your nominations with someone else" onclick="copyShareableLink()">
-                <img src="https://img.icons8.com/ios/452/upload--v1.png" width="10">
-                (copy link)</button>
-            <input hidden id="shareable_link" value="file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html">
-
-            <button onclick="clear_nominations()" style="float:right;color:#008060;">Clear</button>
+        <div style="height: 10px; width:100%;  margin-bottom: 10px;  border: 1px solid white;
+">
+            <p style="text-align:right;font-size:10px; padding-right:10px;margin:0px;" id="page">Page 1</p>
         </div>
+        <div class="container_header">
+            <label id="results_header">Search Results</label>
+            <button hidden id="next" class="small-button" onclick="nextPage()">Next</button>
+            <button hidden class="small-button" onclick="previousPage()" id="previous">Previous</button>
+        </div>
+        <ul id="search_results" style="height:400px;"></ul>
+    </div>
+
+    <div class="container half">
+        <div id="bars">
+            <div id="bar1"></div>
+            <div id="bar2"></div>
+            <div id="bar3"></div>
+            <div id="bar4"></div>
+            <div id="bar5"></div>
+        </div>
+        <div class="container_header"><label>Nominations</label>
+            <div class="share" title="Share your nominations with someone else" onclick="copyShareableLink()">
+                <img src="https://img.icons8.com/ios/452/upload--v1.png" width="10">
+                (copy link)
+
+
+                <span class="popuptext" id="shareablelink_popup">Copied to clipboard! <img src="https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Dark-512.png" height="30px"></span>
+
+            </div>
+            <input hidden readonly="readonly" id="shareable_link" value="file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html">
+
+            <button class="small-button" onclick="clear_nominations()">Clear</button>
+        </div>
+        <div id="nominations_placeholder" style="text-align:center; color:gray;">
+            <p><i>Please nominate movies so they appear here. <br>You can make up to 5 nominations.</i></p>
+        </div>
+
         <ul id="nominations">
         </ul>
-        <div hidden id="max_nominations">★ You have nominated 5 movies ★
+        <div hidden id="max_nominations">★ You have nominated 5 movies ★<br> Please <a id="complete_link" href="file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html">share</a> your nominations with others!
         </div>
     </div>
 

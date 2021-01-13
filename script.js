@@ -8,12 +8,13 @@ var nominations_dict = {} // dictionary of user nominations
 var shareable_link = document.getElementById("shareable_link"); // Shareable link input 
 var url = "https://www.omdbapi.com/?apikey=4db33529&i=";
 const urlParams = new URLSearchParams(window.location.search);
-const nominationsParameter = urlParams.get("nominations")
+const nominationsParameter = urlParams.get("nominations") // Nominations in URL parameters
+var pg = 1; // Current search results page
 
 
 // Functions
 /// Perform search
-function searchOMDb() {
+function searchOMDb(page) {
 
     var searchQuery = input_search.value; // Get user search query
 
@@ -27,7 +28,7 @@ function searchOMDb() {
     var request = new XMLHttpRequest()
 
     /// Open a new connection, using the GET method and the user search query
-    request.open('GET', url_omdb + searchQuery)
+    request.open('GET', url_omdb + searchQuery + "&page=" + page)
 
     /// Function to run once request transaction completes successfully
     request.onload = function() {
@@ -69,6 +70,12 @@ function searchOMDb() {
 
     // Send request
     request.send()
+
+    // If in the first page, hide previous button and show next button
+    if (page == 1) {
+        document.getElementById("next").hidden = false;
+        document.getElementById("previous").hidden = true;
+    }
 }
 
 
@@ -99,11 +106,23 @@ function nominate(title, year, id) {
 // Function to load and display nominations in the nominations div, based on user nominations
 function load_nominations() {
     var number_of_nominations = Object.keys(nominations_dict).length; // Number of nominations
+    document.getElementById("nominations_placeholder").hidden = true; // Hide nominations container placeholder text
+
+    // Show/Hide nominations banner and placeholder depending on number of nominations
     if (number_of_nominations < 5) {
+
+        // If number of nominations is less than 5, do not show max nominations banner 
         document.getElementById("max_nominations").hidden = true;
+
+        // If number of nominations = 0, show placeholder text for nominations
+        if (number_of_nominations == 0) {
+            document.getElementById("nominations_placeholder").hidden = false;
+        }
     } else {
+        // If user has nominated 5 movies, show maximum nominations banner
         document.getElementById("max_nominations").hidden = false;
     }
+
     // Clear list of nominations so they can be loaded
     nominations_div.innerHTML = "";
     // For each movie in the list of nominations, display movie in nominations container
@@ -124,6 +143,23 @@ function load_nominations() {
     }
 
     shareable_link.hidden = true;
+
+    // Create shareable link    
+    document.getElementById("complete_link").href = "file:///Users/ericamatulis/Documents/Personal Development/GitHub/the-shoppies-movie-awards-for-entrepreneurs/index.html?nominations=" + Object.keys(nominations_dict)
+
+
+    // Update nominations bars (1-5)
+    fill_color = "#008060" // Nominations fill color
+    if (number_of_nominations == 5) {
+        fill_color = "#02b588" // If 5 nominations have been made, color is lighter
+    }
+    for (i = 0; i < number_of_nominations; i++) {
+        document.getElementById("bar" + (i + 1)).style.backgroundColor = fill_color;
+    } // Color number of bars that have been nominated
+
+    for (i = 5; i > number_of_nominations; i--) {
+        document.getElementById("bar" + (i)).style.backgroundColor = "#EEE";
+    } // Color number of bars that have not been nominated in grey
 
 }
 
@@ -150,6 +186,14 @@ function copyShareableLink() {
     copyLinkText.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy");
     shareable_link.hidden = true;
+
+    // Pop up success message
+    var shareable_popup = document.getElementById("shareablelink_popup");
+    shareable_popup.classList.toggle("show");
+    setTimeout(function() {
+        shareable_popup.classList.toggle("show");
+    }, 500);
+
 }
 
 // Clear nominations
@@ -158,6 +202,32 @@ function clear_nominations() {
         remove(key)
     }
 }
+
+// Go to next results page
+function nextPage() {
+    pg = pg + 1
+    searchOMDb(pg)
+    document.getElementById("previous").hidden = false;
+    if (pg >= 100) {
+        document.getElementById("next").hidden = true;
+    }
+    document.getElementById("page").innerHTML = "Page " + pg;
+
+}
+
+// Go to previous results page
+function previousPage() {
+    pg = pg - 1
+    searchOMDb(pg)
+    document.getElementById("next").hidden = false;
+    if (pg <= 1) {
+        document.getElementById("previous").hidden = true;
+    }
+    document.getElementById("page").innerHTML = "Page " + pg;
+
+
+}
+
 
 
 // Event listeners
