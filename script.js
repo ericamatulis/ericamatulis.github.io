@@ -78,6 +78,10 @@ function searchOMDb(page) {
         document.getElementById("next").hidden = false;
         document.getElementById("previous").hidden = true;
     }
+    
+    pg = page;
+    
+    document.getElementById("page").innerHTML = "Page " + pg;
 }
 
 

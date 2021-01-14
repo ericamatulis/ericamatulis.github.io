@@ -194,12 +194,15 @@ button:focus {
 }
 
 #max_nominations {
-    background-color: #6ee0c4;
-    height: 40px;
+    background-color: #02b588;
     margin-top: 30px;
     vertical-align: middle;
     text-align: center;
     line-height: 40px;
+    color: white;
+}
+
+#max_nominations a {
     color: #004C3F;
 }
 
