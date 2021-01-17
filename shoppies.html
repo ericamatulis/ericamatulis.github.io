@@ -15,7 +15,7 @@
 <body>
     <div class="header">
         <div class="header-logo">
-            <div class="header-icon"><img src="https://assets.stickpng.com/images/58482ec0cef1014c0b5e4a70.png" alt="Shoppies Icon" height="40px">
+            <div class="header-icon"><img src="images/shoppies-icon.png" alt="Shoppies Icon" height="40px">
             </div>
             <div class="header-text">
                 <div class="header-text-top"><strong>the shoppies</strong>
@@ -31,10 +31,10 @@
         <div class="container-item" id="search_div">
             <div class="inner-search-container">
                 <div class="search-bar">
-                    <input class="search-input" type="text" id="search_input" placeholder="   Search movies to nominate (by title)" style="width:100%;">
+                    <input type="text" id="search_input" placeholder="Search movies to nominate (by title)">
                 </div>
                 <div class="search-button">
-                    <input type="submit" id="search_button" onclick="searchOMDb(1)" style="width: 100%;" value="Search">
+                    <input type="submit" id="search_button" onclick="searchOMDb(1)" value="Search">
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div class="container-footer">
-                <p style="text-align: center;font-size:10px;margin:0px;" id="page"></p>
+                <p id="page"></p>
             </div>
             <div class="container-below-header">
                 <button hidden id="next" class="small-button" onclick="nextPage()">Next</button>
@@ -74,6 +74,8 @@
             <div class="container-content mobile-content" id="nominations-content">
                 <div id="nominations_placeholder" class="placeholder">
                     <i>Please nominate movies so they appear here. <br>You can make up to 5 nominations.</i>
+                    <br><br>
+                    <a class = "begin-search small-button" href="#search_input">Begin search</a>
                 </div>
                 <ul class="list-group" id="nominations">
                 </ul>
@@ -84,11 +86,11 @@
         </div>
     </div>
 
-    <div hidden id="max_nominations" style="position:fixed; width:100%; opacity:0.95; bottom: 10px;">
+    <div hidden id="max_nominations">
         <button onclick="document.getElementById('max_nominations').hidden=true;" style="float:right;">&times;</button>
         <div>Congrats on nominating 5 movies! Please share your nominations with others</div>
         <div class="share" title="Share your nominations with someone else" onclick="copyShareableLink()">
-            <img src="https://img.icons8.com/ios/452/upload--v1.png" alt="Share icon" width="10">
+            <img src="images/share-icon.png" alt="Share icon" width="10">
             (copy link)
         </div>
         <br>
@@ -100,11 +102,11 @@
     <input hidden readonly="readonly" id="shareable_link" value="shoppies.html">
 
     <span class="popuptext centered" id="shareablelink_popup">
-        <p>Copied to clipboard!</p><img src="http://clipart-library.com/images/8c68RGyei.png" alt="Checkmark icon" height="30px" width="30px;">
+        <p>Copied to clipboard!</p><img src="images/checkmark-icon.png" alt="Checkmark icon" height="30px" width="30px;">
     </span>
 
     <div id="clearModal" class="modal">
-        <div id="clear_form" class="centered container">
+        <div id="clear_form" class="centered">
             <button onclick="document.getElementById('clearModal').style.display='none'" style="float:right;">&times;</button>
             <p>Are you sure you want to clear your nominations?</p>
             <button type="button" onclick="document.getElementById('clearModal').style.display='none'" class="cancelbtn">Cancel</button>
