@@ -134,10 +134,6 @@ button:disabled {
     pointer-events: none
 }
 
-.show {
-    visibility: visible
-}
-
 .flex-column {
     flex-direction: column
 }
@@ -152,6 +148,10 @@ button:disabled {
     z-index: 1;
     border: 1px solid #008060;
     font-size: 12px
+}
+
+.show {
+    visibility: visible
 }
 
 .big-container {
