@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +10,9 @@
 </head>
 
 
-
 <body>
+    
+    <!-- Webpage header -->
     <div class="header">
         <div class="header-logo">
             <div class="header-icon"><img src="images/shoppies-icon.png" alt="Shoppies Icon" height="40px">
@@ -26,8 +26,9 @@
         </div>
     </div>
 
-
+    <!-- Webpage main content -->
     <div class="content container">
+        <!-- Search -->
         <div class="container-item" id="search_div">
             <div class="inner-search-container">
                 <div class="search-bar">
@@ -39,6 +40,7 @@
             </div>
         </div>
 
+        <!-- Results -->
         <div class="container-item flex-column" id="results_div">
             <div class="container-above-header" id="number_of_results"></div>
             <div class="container-header">
@@ -49,19 +51,21 @@
                     <i>Use the search bar above to look for movies you'd like to nominate for the Shoppies!</i>
                 </div>
                 <div style="position: relative;">
-                    <div hidden id="search-load" class="loader centered" style="position: absolute;"></div></div>
-                <ul id="search_results" class="list-group">
+                    <div hidden class="loader centered" id="search-load" style="position: absolute;"></div>
+                </div>
+                <ul class="list-group" id="search_results">
                 </ul>
             </div>
             <div class="container-footer">
                 <p id="page"></p>
             </div>
             <div class="container-below-header">
-                <button hidden id="next" class="small-button" onclick="nextPage()">Next</button>
-                <button hidden class="small-button" onclick="previousPage()" id="previous">Previous</button>
+                <button hidden class="small-button" id="next" onclick="nextPage()">Next</button>
+                <button hidden class="small-button" id="previous" onclick="previousPage()">Previous</button>
             </div>
         </div>
         
+        <!-- Nominations -->
         <div class="container-item flex-column" id="nominations_div">
             <div class="container-above-header bars">
                 <div id="bar1"></div>
@@ -74,7 +78,7 @@
                 <label>Nominations</label>
             </div>
             <div class="container-content mobile-content" id="nominations-content">
-                <div id="nominations_placeholder" class="placeholder">
+                <div class="placeholder" id="nominations_placeholder">
                     <i>Please nominate movies so they appear here. <br>You can make up to 5 nominations.</i>
                     <br><br>
                     <a class = "begin-search small-button" href="#search_input">Begin search</a>
@@ -84,25 +88,34 @@
             </div>
             <div class="container-footer">
             </div>
-            <div class="container-below-header"><button hidden id="clear_nominations" class="small-button" onclick="document.getElementById('clearModal').style.display='block'">Clear</button><button hidden id="undo_clear" class="small-button" onclick="undo_clear()">Undo</button><button hidden id="share_nominations" class="small-button" onclick="copyShareableLink()">Share</button></div>
+            <div class="container-below-header">
+                <button hidden class="small-button" id="clear_nominations" onclick="document.getElementById('clearModal').style.display='block'">Clear</button>
+                <button hidden class="small-button" id="undo_clear" onclick="undo_clear()">Undo</button>
+                <button hidden class="small-button" id="share_nominations" onclick="copyShareableLink()">Share</button>
+            </div>
         </div>
     </div>
-
+  
+    <!-- Hidden elements, including banners, popups and modal -->
     <div hidden id="max_nominations">
+        
         <button onclick="document.getElementById('max_nominations').hidden=true;" style="float:right;">&times;</button>
+        
         <div>Congrats on nominating 5 movies! Please share your nominations with others</div>
+        
         <div class="share" title="Share your nominations with someone else" onclick="copyShareableLink()">
             <img src="images/share-icon.png" alt="Share icon" width="10">
             (copy link)
         </div>
+        
         <br>
+        
         <div class="clear" onclick="document.getElementById('clearModal').style.display='block'">
             Start over
         </div>
+        
     </div>
     
-    <input hidden readonly="readonly" id="shareable_link" value="shoppies.html">
-
     <span class="popuptext centered" id="shareablelink_popup">
         <p>Copied to clipboard!</p><img src="images/checkmark-icon.png" alt="Checkmark icon" height="30px" width="30px;">
     </span>
@@ -116,7 +129,10 @@
         </div>
     </div>
 
+    <input hidden readonly="readonly" id="shareable_link" value="shoppies.html">
 
+
+    <!-- Load scripts -->
     <script src="shoppies.js"></script>
 
 </body>
