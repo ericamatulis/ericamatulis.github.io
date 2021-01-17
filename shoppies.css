@@ -1,0 +1,433 @@
+.cancelbtn,
+.clearbtn {
+    float: left;
+    width: 50%
+}
+
+.clearbtn {
+    background-color: #cd5c5c;
+    color: #fff
+}
+
+.clearbtn:hover {
+    background-color: #c94f4f
+}
+
+
+
+#clear_form {
+    background-color: #fff;
+    padding: 2%;
+    margin: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: solid 1px #ddd
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.disabled {
+    pointer-events: none
+}
+
+#max_nominations {
+    background-color: #02b588;
+    margin-top: 30px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    padding: 10px
+}
+
+#max_nominations a {
+    color: #004c3f
+}
+
+.small-button:hover {
+    color: #000;
+    background-color: #fff;
+    text-decoration: underline
+}
+
+.share,
+button {
+    border: 1px solid #f7f7f7
+}
+
+.share {
+    align-items: center;
+    padding: 0 5px;
+    color: #777;
+    font-size: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    display: inline-block;
+    cursor: pointer
+}
+
+.share:hover,
+button:hover {
+    background-color: #f4f4f4
+}
+
+.popuptext {
+    visibility: hidden;
+    background-color: rgb(255, 255, 255, .99);
+    color: #111;
+    text-align: center;
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1;
+    border: 1px solid #008060;
+    font-size: 12px
+}
+
+.show {
+    visibility: visible
+}
+
+.small-button {
+    float: right;
+    color: #008060;
+    background-color: #fff;
+    border-width: 0;
+    text-align: right
+}
+
+button {
+    border-radius: 7px
+}
+
+button:hover {
+    cursor: pointer
+}
+
+button:focus {
+    outline: 0
+}
+
+body,
+html {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0
+}
+
+html {
+    -webkit-font-smoothing: antialiased
+}
+
+body {
+    background-color: #f9f9f9;
+    font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif
+}
+
+.header {
+    overflow: hidden;
+    background-color: rgb(0, 76, 63, .8);
+    padding: 10px
+}
+
+.header-logo {
+    padding: 5px;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    color: #fff
+}
+
+.header-text {
+    flex-direction: column
+}
+
+.header-icon {
+    padding-right: 10px
+}
+
+.header-text-top {
+    font-size: 20px
+}
+
+.header-text-bottom {
+    font-size: 14px
+}
+
+.search-container {
+    padding: 2%;
+    display: flex;
+    margin: 10px;
+    background-color: #fff;
+    flex: 1 1 100%;
+    font-size: 16px;
+    border-radius: 8px;
+    border: solid 1px #ddd
+}
+
+.big-container {
+    display: flex;
+    margin-top: 10px
+}
+
+.med-container {
+    width: 50%;
+    background-color: #fff;
+    flex: 1 1 100%;
+    padding: 2%;
+    margin: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: solid 1px #ddd
+}
+
+.container-above-header {
+    height: 10px
+}
+
+.container-below-header {
+    height: 20px
+}
+
+.container-below-header button,
+.container-below-header p {
+    float: right
+}
+
+.container-header {
+    border-bottom: 1px solid #eee;
+    padding: 10px 5px
+}
+
+.container-content {
+    height: 300px;
+    background-color: #fff;
+    margin: 0;
+    padding: .1px .1px 10px
+}
+
+.container-footer {
+    height: 20px;
+    line-height: 20px
+}
+
+li,
+ul {
+    list-style-type: none;
+    padding: 5px;
+    overflow-y: scroll;
+    height: 270px
+}
+
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    height: 30px;
+    display: flex;
+    font-size: 14px;
+    line-height: 30px
+}
+
+.list-name,
+li div {
+    flex-grow: 1
+}
+
+.list-name {
+    background-color: pink;
+    overflow: hidden;
+    vertical-align: middle
+}
+
+.list-button {
+    float: right
+}
+
+.bars {
+    display: flex
+}
+
+#bar1,
+#bar2,
+#bar3,
+#bar4,
+#bar5 {
+    background-color: #eee;
+    height: 100%;
+    flex-grow: 1;
+    border: 1px solid #fff;
+    margin-bottom: 10px
+}
+
+.placeholder {
+    text-align: center;
+    color: gray;
+    padding-top: 40px
+}
+
+.content {
+    margin: 20px 20px 40px
+}
+
+.inner-search-container {
+    display: flex;
+    width: 100%;
+    align-items: center
+}
+
+.inner-search-container input {
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #e5e5e5;
+    height: 100%
+}
+
+.search-bar {
+    flex-grow: 1
+}
+
+.search-input {
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    font-size: 1em;
+    padding: 5px 0
+}
+
+.search-input:focus {
+    border: 1px solid #008060;
+    outline: 0
+}
+
+.search-button {
+    width: 164px;
+    padding: 5px
+}
+
+#search_button {
+    padding: 5px 0;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15);
+    background-color: #008060;
+    color: #fff;
+    border: 0
+}
+
+#search_button:hover {
+    background-color: #004c3f;
+    color: #fff;
+    background: #2d62d3
+}
+
+@media screen and (max-width:300px) {
+
+    .cancelbtn,
+    .deletebtn {
+        width: 100%
+    }
+}
+
+@media screen and (max-width:767px) {
+    .inner-search-container {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding: 20px
+    }
+
+    .inner-search-container input {
+        padding: 0;
+        height: 50px
+    }
+
+    .search-button {
+        margin-bottom: 0;
+        width: 100%
+    }
+
+    .big-container {
+        flex-direction: column
+    }
+
+    .med-container {
+        width: 96%;
+        margin: 10px 0
+    }
+
+    .search-container {
+        margin: 10px 0
+    }
+
+    #clear_form {
+        padding: 5%;
+        font-size: 14px
+    }
+}
+
+#max_nominations button {
+    background-color: #00000;
+    border: 0;
+    margin-right: 4%;
+    color: #fff
+}
+
+.clear,
+.fa-close {
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.fa-close {
+    float: right;
+    transition: all .5s ease;
+    padding: 0 2px
+}
+
+.fa-close:hover {
+    color: gray
+}
+
+.clear {
+    align-items: center;
+    font-size: 12px;
+    border: 0;
+    display: inline-block;
+    text-decoration: underline
+}
+
+.clear:hover {
+    font-weight: 700
+}
+
+#number_of_results {
+    font-size: 10px;
+    font-style: italic;
+    text-align: center
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, .4)
+}
+
+button:disabled {
+    cursor: not-allowed
+}
