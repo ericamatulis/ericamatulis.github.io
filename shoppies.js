@@ -179,7 +179,7 @@ function load_nominations() {
     shareable_link.hidden = true;
 
     // Create shareable link    
-    //document.getElementById("complete_link").href = "index.html?nominations=" + Object.keys(nominations_dict)
+    //document.getElementById("complete_link").href = "shoppies.html?nominations=" + Object.keys(nominations_dict)
 
 
     // Update nominations bars (1-5)
@@ -213,7 +213,7 @@ function remove(id) {
 // Function to copy shareable link
 function copyShareableLink() {
     // Create link    
-    shareable_link.value = "https://ericamatulis.github.io/index.html?nominations=" + Object.keys(nominations_dict)
+    shareable_link.value = "https://ericamatulis.github.io/shoppies.html?nominations=" + Object.keys(nominations_dict)
 
     // Copy link
     shareable_link.hidden = false;
