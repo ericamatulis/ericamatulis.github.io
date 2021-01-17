@@ -26,6 +26,9 @@ function searchOMDb(page) {
     
     // If not empty
     if (searchQuery) {
+
+        // Load search animation
+        document.getElementById("search-load").hidden=false;
         
         // Clear previous search results and add label to search results
         search_results.innerHTML = "";
@@ -45,6 +48,8 @@ function searchOMDb(page) {
             // If search results in an error, display error under search results
             if (JSON.parse(this.response).Error) {
                 
+                document.getElementById("search-load").hidden=true; // Hide load animation
+                
                 // Create error element and set it to response error, then append to search results
                 var resultError = document.createElement("p");
                 resultError.innerHTML = JSON.parse(this.response).Error;
@@ -55,6 +60,8 @@ function searchOMDb(page) {
                 document.getElementById("number_of_results").innerHTML = ""
                 document.getElementById("previous").hidden = true;
                 document.getElementById("next").hidden = true;
+                
+                
             }
 
             // If search does not raise an error, get search results and display them under search results
@@ -92,6 +99,9 @@ function searchOMDb(page) {
                     resultItem.appendChild(nomination_button);
                     search_results.appendChild(resultItem);
                 })
+                
+                document.getElementById("search-load").hidden=true; // Hide load animation
+
 
                 // If in the first page, hide previous button and show next button
                 if (page == 1) {

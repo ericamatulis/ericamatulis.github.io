@@ -190,7 +190,7 @@ button:disabled {
 }
 
 .container-item {
-    padding: 2%;
+    padding: 20px;
     display: flex;
     margin: 1%;
     background-color: #fff;
@@ -230,41 +230,16 @@ button:disabled {
     line-height: 20px
 }
 
-
-
-
-/* Clear items */
-#clear_form {
-    background-color: #fff;
-    padding: 2%;
-    margin: 8px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: solid 1px #ddd
+.loader {
+    margin-top: 10%;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #008060;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
 }
-
-
-
-
-#max_nominations {
-    background-color: #02b588;
-    margin-top: 30px;
-    vertical-align: middle;
-    text-align: center;
-    line-height: 40px;
-    color: #fff;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    opacity: 0.95;
-    bottom: 10px;
-}
-
-#max_nominations a {
-    color: #004c3f
-}
-
-
 
 
 /* Header */
@@ -397,6 +372,34 @@ button:disabled {
     margin: 0px;
 }
 
+/* Additional elements */
+#clear_form {
+    background-color: #fff;
+    padding: 2%;
+    margin: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: solid 1px #ddd
+}
+
+#max_nominations {
+    background-color: #02b588;
+    margin-top: 30px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    opacity: 0.95;
+    bottom: 10px;
+}
+
+#max_nominations a {
+    color: #004c3f
+}
+
 
 /* Responsive design */
 @media screen and (max-width:300px) {
@@ -426,9 +429,6 @@ button:disabled {
     .search-container {
         margin: 10px 0
     }
-
-
-
 
     .inner-search-container {
         -ms-flex-wrap: wrap;
@@ -472,4 +472,16 @@ button:disabled {
         float: none;
     }
 
+}
+
+
+/* Animations */ 
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+} /* Safari */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
