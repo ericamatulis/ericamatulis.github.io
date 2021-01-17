@@ -100,7 +100,6 @@ button:disabled {
 }
 
 #max_nominations button {
-    background-color: #000;
     border: 0;
     margin-right: 4%;
     color: gray
