@@ -36,16 +36,26 @@ function searchOMDb(page) {
 
         /// Function to run once request transaction completes successfully
         request.onload = function() {
+            var resultsLabel = document.getElementById("results_header");
+            resultsLabel.innerHTML = "Results for <b>" + searchQuery + "</b>"
+
             // If search results in an error, display error under search results
             if (JSON.parse(this.response).Error) {
                 // Create error element and set it to response error, then append to search results
                 var resultError = document.createElement("p");
                 resultError.innerHTML = JSON.parse(this.response).Error;
                 search_results.appendChild(resultError);
+
+                document.getElementById("page").innerHTML = ""
+                document.getElementById("number_of_results").innerHTML = ""
+                document.getElementById("previous").hidden = true;
+                document.getElementById("next").hidden = true;
             }
 
             // If search does not raise an error, get search results and display them under search results
             else {
+                // Scroll to results
+                document.getElementById("results_div").scrollIntoView();
                 var results_data = JSON.parse(this.response).Search; // Search results
                 number_of_results = JSON.parse(this.response).totalResults
                 number_of_pages = Math.ceil(number_of_results / 10);
@@ -86,10 +96,8 @@ function searchOMDb(page) {
 
                 document.getElementById("page").innerHTML = "Page " + pg + " of " + number_of_pages;
 
-                var resultsLabel = document.getElementById("results_header");
-                resultsLabel.innerHTML = "Results for <b>" + searchQuery + "</b>"
-                var number_of_results_div = document.getElementById("number_of_results")
-                number_of_results_div.innerHTML = "(showing " + (1 + (page - 1) * 10) + "-" + Math.min(number_of_results, page * 10) + " of " + number_of_results + ")";
+
+                document.getElementById("number_of_results").innerHTML = "(showing " + (1 + (page - 1) * 10) + "-" + Math.min(number_of_results, page * 10) + " of " + number_of_results + ")";
             }
         }
 
@@ -101,7 +109,6 @@ function searchOMDb(page) {
     }
 
 }
-
 
 // Function to nominate a movie
 function nominate(title, year, id) {
@@ -126,8 +133,9 @@ function nominate(title, year, id) {
         nominationSearchItem.getElementsByTagName("button")[0].disabled = true;
     }
 
-}
 
+
+}
 
 // Function to load and display nominations in the nominations div, based on user nominations
 function load_nominations() {
@@ -151,6 +159,9 @@ function load_nominations() {
         // If user has nominated 5 movies, show maximum nominations banner
         document.getElementById("max_nominations").hidden = false;
         document.getElementById("share_nominations").hidden = false;
+        // Scroll to results
+        document.getElementById("nominations_div").scrollIntoView();
+
 
     }
 
@@ -160,7 +171,6 @@ function load_nominations() {
     for (var imdbID in nominations_dict) {
         var nominationItem = document.createElement("li");
         var nominationText = document.createElement("div")
-        //nominationText.classList.add("list-name");
 
         nominationText.innerHTML = nominations_dict[imdbID].Title + " (" + nominations_dict[imdbID].Year + ")"; // Add text to nomination item
 
@@ -178,10 +188,6 @@ function load_nominations() {
 
     shareable_link.hidden = true;
 
-    // Create shareable link    
-    //document.getElementById("complete_link").href = "shoppies.html?nominations=" + Object.keys(nominations_dict)
-
-
     // Update nominations bars (1-5)
     fill_color = "#008060" // Nominations fill color
     if (number_of_nominations == 5) {
@@ -197,6 +203,8 @@ function load_nominations() {
 
     // Set nominations in cookies
     document.cookie = "nominations_cookie=" + Object.keys(nominations_dict)
+
+    document.getElementById("nominations-content").classList.remove("mobile-content");
 }
 
 // Function to remove a nomination
@@ -251,6 +259,7 @@ function undo_clear() {
     load_nominations()
     document.getElementById("undo_clear").hidden = true;
     document.getElementById("clear_nominations").hidden = false;
+    searchOMDb(pg);
 }
 
 // Go to next results page
@@ -295,7 +304,6 @@ function getCookie(cname) {
 }
 
 
-
 // Event listeners
 /// Search results upon enter
 input_search.addEventListener("keyup", function(event) {
@@ -314,9 +322,6 @@ window.onclick = function(event) {
         clearModal.style.display = "none";
     }
 }
-
-
-
 
 
 // Load shareable link parameters
@@ -344,8 +349,3 @@ if (nominationsParameter || nominations_cookie != "") {
 
 
 }
-
-
-
-
-
