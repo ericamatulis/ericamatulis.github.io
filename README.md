@@ -1,8 +1,8 @@
-# Shopify: The Shoppies Challenge
+# The Shoppies: Movie awards for entrepreneurs
 
 This is a submission for the following challenge: [link](https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit#)
 
-Link to your hosted code: [link](http://ericamatulis.github.io/shoppies.html)
+Link to my hosted code: [link](http://ericamatulis.github.io/shoppies.html)
 
 Extra features implemented:
 *  Save nomination lists if the user leaves the page
